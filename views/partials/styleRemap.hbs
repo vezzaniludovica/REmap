@@ -1,0 +1,105 @@
+<style>
+  
+#map { 
+    position:absolute;
+    top:150px;
+    bottom:0;
+    left:150px;
+    right:150px;
+    }
+body{
+    background-color:brown;
+}
+h1,h2{
+    text-align:center;
+}
+.buttons{
+    background-color:rgb(33, 37, 41);
+}
+button{
+    margin-left:20px;
+}
+.content{
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+    margin-top:10px;
+    padding:10px;
+    
+
+}
+</style>
+<script>
+    var map = L.map('map').setView([44.7, 10.63], 12.5);
+    const industrie= L.circle([44.72, 10.65], {
+                        color: 'red',
+                        fillColor: '#f03',
+                        fillOpacity: 0.5,
+                        radius: 1000
+                    })
+    const centro= L.circle([44.7, 10.63], {
+                    color: 'blue',
+                    fillColor: '#4d94ff',
+                    fillOpacity: 0.5,
+                    radius: 1000
+                })
+    const campagna=L.circle([44.68, 10.54], {
+                    color: 'green',
+                    fillColor: '#4dff88',
+                    fillOpacity: 0.5,
+                    radius: 1000
+                })
+    const residenziale=L.circle([44.69, 10.64], {
+                    color: 'yellow',
+                    fillColor: '#ffff66',
+                    fillOpacity: 0.5,
+                    radius: 1000
+                })
+    var train= L.icon({
+        iconUrl:'train.png',
+        iconSize: [95,38],
+        iconAnchor:[94,22]
+    })
+    const treno= L.marker([44.70,10.64],{
+        icon:train
+    })
+    var a1= L.icon({
+        iconUrl:'motorway.png',
+        iconSize:[50,50],
+        iconAnchor:[25,25]
+    })
+    const motorway=L.marker([44.73,10.63],{
+        icon:a1
+    })
+    var mapei=L.icon({
+        iconUrl:'soccer.png',
+        iconSize: [50,50],
+        iconAnchor:[25,25]
+    })
+    const stadium=L.marker([44.71,10.65],{
+        icon:mapei
+    }
+    )
+    const list=[centro, industrie, campagna, residenziale,treno,motorway, stadium]
+    const bottoni= document.getElementsByTagName('button');
+    L.tileLayer('https://api.maptiler.com/maps/basic/256/{z}/{x}/{y}.png?key=7E5nMIsTgcFut43e8k2l', {
+        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+        maxZoom: 18,
+        id: 'mapbox/streets-v11',
+        tileSize: 512,
+        zoomOffset: -1,
+        accessToken: 'your.mapbox.access.token'
+    }).addTo(map);
+
+    function mouseon(num){
+        const x=list[num];
+        x.addTo(map);   
+    }
+    function mouseout(num){
+        const x =list[num]
+        x.remove(map);
+    }
+
+
+
+</script>

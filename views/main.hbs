@@ -1,0 +1,9 @@
+{{> remap}}
+{{> styleRemap}}
+{{#if listExists}}
+<ul>
+    {{#each places}}
+    <li class={{this.where}}>{{this.place}}</li>
+    {{/each}}
+</ul>
+{{/if}}
