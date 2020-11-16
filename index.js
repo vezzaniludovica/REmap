@@ -16,7 +16,7 @@ fakeApi=()=> {
          where: 'mancasale'}
     ]
 };
-app.use(express.static('public'));
+app.use(express.static('views/partials'));
 app.get('/',(req,res)=>{res.render('main',{layout:'index',places:fakeApi(),
 listExists:false});
 
